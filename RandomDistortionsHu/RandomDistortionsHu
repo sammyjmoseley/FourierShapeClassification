@@ -1,0 +1,4 @@
+Run with follwing paramters:
+sigma: from 0 to 1 on 0.02 steps
+1000 randomized tests per shape distortion configuration (50k tests total)
+0 blurring 
