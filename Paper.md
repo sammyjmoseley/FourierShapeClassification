@@ -52,8 +52,8 @@ CUAir[^cua], an interdisciplinary team at Cornell University that designs, build
 The ATR objective includes identifying seven characteristics of targets randomly place on the flight path: color of shape, color of alphanumeric alphanumeric, shape name, alphanumeric character, GPS location, and orientation (see fig. \ref{fig:shape}). Each ATR tasks' accuracy is degraded by poor image quality. This problem serves as a good means to compare a Hu moments algorithm, the benchmark, and a Fourier analysis algorithm.
 
 The objective of this paper is to perform this comparison, Hu moments and Fourier analysis object detection algorithms. I will investigate whether a Fourier analysis algorithm is a feasible and an accurate method to identify shapes. To demonstrate these properties it is necessary to:  
-1. Prove using the mathematical definitions of Fourier analysis that the Fourier analysis algorithm produces unique vectors for different shapes, and identical ones for equivalent shapes.
-2. Illustrate with computational mathematics that under simulated real world conditions the Fourier analysis algorithm outperforms the benchmark Hu moment algorithm.
+1. Prove using the mathematical definitions of Fourier analysis that the Fourier analysis algorithm produces unique vectors for different shapes, and identical ones for equivalent shapes.  
+2. Illustrate with computational mathematics that under simulated real world conditions the Fourier analysis algorithm outperforms the benchmark Hu moment algorithm.  
 
 # Benchmark Hu Moment Algorithm
 
@@ -116,7 +116,7 @@ r(\theta, n) = \sec(\theta-\lfloor \frac{\theta n}{2\pi}\rfloor \frac{2*\pi}{n} 
 \end{equation}
 where n is the number of sides. Fourier analysis can then be applied to the contours' equations to get the discrete frequency domains for shapes.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \begin{tabular}{cc}
   \includegraphics[width=65mm]{DiscretePlots/3.png} &   \includegraphics[width=65mm]{DiscretePlots/4.png} \\
@@ -138,7 +138,7 @@ m_{k,n} &= \sqrt{a_{k,n}^2 + b_{k,n}^2} \\
 \end{aligned}
 \end{equation}
 
-where $a_{k,n}, b_{k,n}$ is the $k$ th $\cos, \sin$ term for the Fourier series describing the contour function for a $n$-gon. To prove that the Fourier frequency domain does not include frequencies which are not divisible by the number of sides $n$, let us define rotational symmetry,
+where $a_{k,n}, b_{k,n}$ is the $k$ th $\cos, \sin$ term for the Fourier series describing the contour function for a $n$-gon. To prove that the Fourier frequency domain does not include frequencies which are not divisible by the number of sides $n$, it is first necessary to define rotational symmetry,
 \begin{equation} \label{eq:rotsym}
 \centering
 r\left(\theta, n\right) = r\left(\theta + \frac{2\pi}{n}, n \right)
@@ -150,9 +150,9 @@ and reflectional symmetry,
 r\left(\theta, n\right) = r\left(-\theta, n \right)
 \end{equation}
 
-All terms of the the Fourier series that have frequencies divisible by $n$ satisfy the properties defined by the above equations. Individual terms of the Fourier series that would have frequencies not divisible by $n$ would not satisfy the above properties, however, it is not clear that a linear combination of them would not satisfy the above equations. Define the following notation $\hat{a}_{k,n}$ is the variable that has value $a_{k,n}$. Each variable is only equal to itself, ore more formally: $\hat{a}_{p,q}=\hat{a}_{x,y} \iff p=q \wedge q=y$. Define the evaluation function $\mathscr{E}\left(\hat{v}_{a,b}\right) = v_{a,b}$, takes a variable and returns it's value.
+All terms of the the Fourier series that have frequencies divisible by $n$ satisfy the properties defined by the above equations. Individual terms of the Fourier series that would have frequencies not divisible by $n$ would not satisfy the above properties, however, it is not clear that a linear combination of them would not satisfy the above equations. Define the following notation $\hat{a}_{k,n}$ is the variable that has value $a_{k,n}$. Each variable is only equal to itself, or more formally: $\hat{a}_{p,q}=\hat{a}_{x,y} \iff p=q \wedge q=y$. Define the evaluation function $\mathscr{E}\left(\hat{v}_{a,b}\right) = v_{a,b}$, takes a variable and returns it's value.
 
-Also, let's define the two following sets:
+Also, define the two following sets:
 \begin{equation} \label{eq:setdef}
 \begin{aligned}
 \centering
@@ -162,11 +162,11 @@ D_n &= \{\hat{b}_{k,n} : \mathscr{E}\left(\hat{b}_{k,n}\right) \ne 0 \wedge n\nm
 \end{equation}
 
 
-$C_n$ and $D_n$ contain the variables for the frequencies in the frequency domain that are not divisible by $n$. To show that $C_n,D_n=\emptyset$ we will use proof by induction.
+$C_n$ and $D_n$ contain the variables for the frequencies in the frequency domain that are not divisible by $n$. To show that $C_n,D_n=\emptyset$, use proof by induction.
 
 **Base Case**: $\left\vert{C_n \cup D_n}\right\vert \ne 1$
 Proof by contradiction: Assume $\left\vert{C_n \cup D_n}\right\vert = 1$
-Let's call the one element in one of the sets $\hat{p}_{k,n}$. To maintain the properties described by equation \ref{eq:refsym}, $p_{k,n}sin\left(k\theta\right)=p_{k,n}sin\left(-k\theta\right)$, $sin$ is odd, so this is not true for all $\theta$, therefore $\hat{p}_{k,n}\notin D_{n}$.
+Call the one element in one of the sets $\hat{p}_{k,n}$. To maintain the properties described by equation \ref{eq:refsym}, $p_{k,n}sin\left(k\theta\right)=p_{k,n}sin\left(-k\theta\right)$, $sin$ is odd, so this is not true for all $\theta$, therefore $\hat{p}_{k,n}\notin D_{n}$.
 If $\hat{p}_{k,n}\in C_{n}$ then $\hat{p}_{k,n}$ would satisfy equation \ref{eq:refsym}, however, it would not satisfy equation \ref{eq:rotsym}: $p_{k,n}\cos\left(k\theta\right) = p_{k,n}\cos\left(\frac{2\pi}{n}+k\theta\right)$. This is also not the case since $\frac{2\pi}{n}$ is not is a multiple of the terms period $\frac{2\pi}{k}$ as $n\mid k$ (eq \ref{eq:setref}).
 
 **Inductive Step**: Assume $\left\vert{C_n \cup D_n}\right\vert$ cannot equal $p$, show that $\left\vert{C_n \cup D_n}\right\vert$ cannot equal $p+1$
@@ -178,14 +178,14 @@ Proof by contradiction: Assume that there exists a $\hat{p}_{k,n}$ not in $C_n\c
 \end{aligned}
 \end{equation}
 
-,and symmetrical symmetry outlined by equation and \ref{eq:refsysm},
+,and symmetrical symmetry outlined by equation and \ref{eq:refsym},
 \begin{equation} \label{eq:hihi2}
 \begin{aligned}
 \sum_{\hat{a}_{j,n}\in C_n} \mathscr{E}\left(\hat{a}_{j,n}\right) &= \sum_{\hat{a}_{j,n}\in C_n}\mathscr{E}\left(\hat{a}_{j,n}\right)\cos\left(-\frac{2\pi j}{n}\right) + \sum_{\hat{b}_{j,n}\in D_n}\mathscr{E}\left(\hat{b}_{j,n}\right)\sin\left(-\frac{2\pi j}{n}\right) + p_{k,n}\sin\left(-\frac{2\pi k}{n}\right)\\
 \end{aligned}
 \end{equation}
 
-Subtracting equation \ref{eq:hihi2} from equation \ref{eq:hihi1} you:
+Subtracting equation \ref{eq:hihi2} from equation \ref{eq:hihi1} yields:
 \begin{equation*}
 \begin{aligned}
 0 &= 2\sum_{\hat{b}_{j,n}\in D_n}\mathscr{E}\left(\hat{b}_{j,n}\right)\sin\left(-\frac{2\pi j}{n}\right) + 2p_{k,n}\sin\left(-\frac{2\pi k}{n}\right)\\
@@ -205,14 +205,14 @@ This is a contradiction, sine waves of different frequencies are orthogonally pe
 \end{aligned}
 \end{equation}
 
-,and symmetrical symmetry outlined by equation and \ref{eq:refsysm},
+, and symmetrical symmetry outlined by equation \ref{eq:refsym},
 \begin{equation} \label{eq:hihi2}
 \begin{aligned}
 \sum_{\hat{a}_{k,n}\in C_n} \mathscr{E}\left(\hat{a}_{k,n}\right) + p_{k,n} &= \sum_{\hat{a}_{k,n}\in C_n}\mathscr{E}\left(\hat{a}_{k,n}\right)\cos\left(-\theta - \frac{2\pi k}{n}\right) + \sum_{\hat{b}_{k,n}\in D_n}\mathscr{E}\left(\hat{b}_{k,n}\right)\sin\left(-\theta  - \frac{2\pi k}{n}\right) + \\ & p_{k,n}\cos\left(-\theta - \frac{2\pi k}{n}\right)\\
 \end{aligned}
 \end{equation}
 
-Add equation \ref{eq:hihi2} from equation \ref{eq:hihi1},
+Adding equation \ref{eq:hihi2} to equation \ref{eq:hihi1} yields:
 \begin{equation*}
 \begin{aligned}
 2 \sum_{\hat{a}_{k,n}\in C_n} \mathscr{E}\left(\hat{a}_{k,n}\right) + 2p_{k,n} &= 2 \sum_{\hat{a}_{k,n}\in C_n}\mathscr{E}\left(\hat{a}_{k,n}\right)\cos\left(\theta + \frac{2\pi k}{n}\right) + 2p_{k,n}\cos\left(\theta + \frac{2\pi k}{n}\right)\\
@@ -232,15 +232,15 @@ Every shape has a unique wave form. Some are radially symmetrical with different
 A unique Fourier Analysis frequency domain increases the robustness of the our algorithm. Random perturbations in the contour are less likely to cause the frequency domain to change so significantly that Fourier frequency domain vectors would be incorrectly classified.
 
 ### K-Nearest Neighbor
-[See the K-Nearest Neighbor for Hu Moment][hu-moment-knearest]
+See the K-Nearest Neighbor for Hu Moment
 
 # Algorithm Testing
-To evaluate the efficacy of the Fourier Analysis algorithm, accuracy of the algorithm was benchmarked against the Hu moments algorithm with the addition of random contour perturbations. When deciding on a good metric to compare the algorithms, real world conditions was the primary criteria. When segmenting a pixelated or blurry shape from its background, it is common for the contour to be extruded or intruded due to thresholding or contouring systemic errors. To simulate the perturbations, contour points were randomly extruded or intruded with a normal distribution random variable.
+To evaluate the efficacy of the Fourier Analysis algorithm, accuracy of the algorithm was benchmarked against the Hu moments algorithm with the addition of random contour perturbations. When deciding on a good metric to compare the algorithms, real world conditions were the primary criteria. When segmenting a pixelated or blurry shape from its background, it is common for the contour to be extruded or intruded due to thresholding or contouring systemic errors. To simulate the perturbations, contour points were randomly extruded or intruded with a normal distribution random variable.
 
 
 \begin{figure}[H]
   \centering
-      \includegraphics[width=1.3\textwidth]{PerturbationDensity.jpg}
+      \includegraphics[width=1.0\textwidth]{PerturbationDensity.jpg}
   \caption{Shape Form Distribution}
   \label{fig:pertdens}
 \end{figure}
@@ -268,13 +268,13 @@ The accuracy of both algorithms decrease as the standard deviation of contour pe
 
 # Conclusion
 
-The Fourier analysis algorithm was shown to handle contouring errors better than a Hu moments algorithm. Random contouring perturbations were less likely to cause incorrect classification with the Fourier analysis algorithm. The tests should serve as a good prediction of how the algorithms would perform in the real world, however, there were not comprehensive. Further testing on real world data and more specific error simulation should provide greater certainty to how the algorithms compare.
+The Fourier analysis algorithm was shown to handle contouring errors better than a Hu moments algorithm. Random contouring perturbations were less likely to cause incorrect classification with the Fourier analysis algorithm. The tests should serve as a good prediction of how the algorithms would perform in the real world, however, they were not comprehensive. Further testing on real world data and more specific error simulation should provide greater certainty on how the algorithms compare.
 
 While the Fourier analysis algorithm is more resilient than the Hu moments algorithm, it is still vulnerable to segmentation errors. Reducing errors in image contouring would alleviate this issue, however, to further increase resilience one can add safeguards implemented within the Fourier analysis algorithm. Possible other ways to strengthen the algorithm:   
-* Train the model more specifically for shapes by having it consider the lowest frequencies as the most important
-* Try performing some type of radial blurring to get rid of contouring noise
-* Often contour perturbations will only occur on one side of the shape, try to identify which side and correct with the other side of the shape
-* Use the Hu Moments algorithm verify the Fourier analysis algorithm's result, and, if conflict, resort to a third, perhaps less optimal, algorithm 
+- Train the model more specifically for shapes by having it consider the lowest frequencies as the most important  
+- Try performing some type of radial blurring to get rid of contouring noise  
+- Often contour perturbations will only occur on one side of the shape, try to identify which side and correct with the other side of the shape  
+- Use the Hu Moments algorithm verify the Fourier analysis algorithm's result, and, if conflict arises, resort to a third, perhaps less optimal, algorithm  
 
 Some weaknesses of the algorithm include its inability to work on shapes which cannot be defined by a polar function and its inability to identify more complex shapes where there might not be a strict contour (Hu moments are better suited for this).
 
@@ -284,5 +284,5 @@ For more challenging images, it may be necessary to convert the image into the H
 
 A window thresholding algorithm compares pixel values against a moving average with dimensions $n\times m$. One should choose dimensions larger than the target, but ideally smaller than other features, such as forests or runways to avoid bad identifications.
 
-For further contouring accuracy, one can use the HSV color space. The Red-Green-Blue (RGB) color space is a difficult color space to work in since the Cartesian distance between colors in the RGB space is not always representative of how different the colors actually. HSV solves this by providing just one dimension, Hue, representing color, and two dimension representing saturation and value (brightness).
+For further contouring accuracy, one can use the HSV color space. The Red-Green-Blue (RGB) color space is a difficult color space to work in since the Cartesian distance between colors in the RGB space is not always representative of how different the colors actually are. HSV solves this by providing just one dimension, Hue, representing color, and two dimensions representing saturation and value (brightness).
 
